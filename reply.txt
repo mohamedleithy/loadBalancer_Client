@@ -1,1 +1,20 @@
-tieL olleH
+Sent::req0 time::SystemTime { tv_sec: 1668874987, tv_nsec: 816708000 }
+Sent::req1 time::SystemTime { tv_sec: 1668874987, tv_nsec: 816819000 }
+Sent::req2 time::SystemTime { tv_sec: 1668874987, tv_nsec: 816842000 }
+Sent::req3 time::SystemTime { tv_sec: 1668874987, tv_nsec: 816858000 }
+Sent::req4 time::SystemTime { tv_sec: 1668874987, tv_nsec: 816873000 }
+Sent::req5 time::SystemTime { tv_sec: 1668874987, tv_nsec: 816888000 }
+Sent::req6 time::SystemTime { tv_sec: 1668874987, tv_nsec: 816906000 }
+Sent::req7 time::SystemTime { tv_sec: 1668874987, tv_nsec: 816924000 }
+Sent::req8 time::SystemTime { tv_sec: 1668874987, tv_nsec: 816940000 }
+Sent::req9 time::SystemTime { tv_sec: 1668874987, tv_nsec: 816957000 }
+Recieved::req0 time::SystemTime { tv_sec: 1668874989, tv_nsec: 929638000 }
+Recieved::req1 time::SystemTime { tv_sec: 1668874990, tv_nsec: 931320000 }
+Recieved::req2 time::SystemTime { tv_sec: 1668874991, tv_nsec: 935191000 }
+Recieved::req3 time::SystemTime { tv_sec: 1668874992, tv_nsec: 941418000 }
+Recieved::req4 time::SystemTime { tv_sec: 1668874993, tv_nsec: 946644000 }
+Recieved::req5 time::SystemTime { tv_sec: 1668874994, tv_nsec: 951800000 }
+Recieved::req6 time::SystemTime { tv_sec: 1668874995, tv_nsec: 957022000 }
+Recieved::req7 time::SystemTime { tv_sec: 1668874996, tv_nsec: 962254000 }
+Recieved::req8 time::SystemTime { tv_sec: 1668874997, tv_nsec: 967175000 }
+Recieved::req9 time::SystemTime { tv_sec: 1668874998, tv_nsec: 968039000 }
