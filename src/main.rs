@@ -3,40 +3,52 @@
 use std::net::UdpSocket;
 use std::fs::File;
 use std::fs;
-use std::io::Read;
+use std::io::{Read, Write};
+extern crate local_ip;
+use std::time::{Duration, SystemTime};
 
 fn main() -> std::io::Result<()>{
     {
-        
-        let socket = UdpSocket::bind("10.40.44.255:2022")?;
+        let mut f = File::options().append(true).open("reply.txt")?;
+        let ip = local_ip::get().unwrap();
+        let socket = UdpSocket::bind(ip.to_string() + ":2022")?;
         // Receives a single datagram message on the socket. If `buf` is too small to hold
         // the message, it will be cut off.
        
         
-        let mut f = File::open("test.text")?;
+      //  let mut f = File::open("test.text")?;
 
         // This is a mutable buffer that will be loaded from the socket
         // This is a short buffer so any long message will be cut off 
-        let mut buf = [0; 10];
-
-
-        f.read(&mut buf)?;
-
-        socket.send_to(b"req1", "10.40.44.255:2020")?;
-        socket.send_to(b"req2", "10.40.44.255:2020")?;
-        socket.send_to(b"req3", "10.40.44.255:2020")?;
-        socket.send_to(b"req4", "10.40.44.255:2020")?;
+        let mut buf = [0; 60];
         
-        
-        let (amt, src) = socket.recv_from(&mut buf)?;
-        fs::write("reply1.txt",&buf)?;
-        let (amt, src) = socket.recv_from(&mut buf)?;
-        fs::write("reply2.txt",&buf)?;
-        let (amt, src) = socket.recv_from(&mut buf)?;
-        fs::write("reply3.txt",&buf)?;
-        let (amt, src) = socket.recv_from(&mut buf)?;
-        fs::write("reply4.txt",&buf)?;
+
+       // f.read(&mut buf)?;
+    for i in 0..10 {
     
+        
+        let now = SystemTime::now();
+        let t = format!("Sent::req{} time::{:?}\n", i, now);
+        f.write_all( t.as_bytes())?;
+        let t = format!("req{}", i);
+        socket.send_to(t.as_bytes(), ip.to_string() +":2020")?;
+
+    }
+
+    for i in 0..10 {
+        let (_, _) = socket.recv_from(&mut buf)?;
+        let now = SystemTime::now();
+        
+        let mut msg = [0; 60];
+        msg.copy_from_slice(&buf);
+        msg.reverse();
+        let msg = String::from_utf8((&msg).to_vec()).unwrap();
+        let msg = msg.trim_matches(char::from(0));
+        let t = format!("Recieved::{} time::{:?}\n", msg, now);
+       f.write_all( t.as_bytes())?;
+    }
+        
+        
     }
 
     Ok(())
