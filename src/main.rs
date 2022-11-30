@@ -19,7 +19,7 @@ fn main() -> std::io::Result<()>{
 
         let args: Vec<String> = env::args().collect();
         
-        let filename = format!("./clientsLog/client{}.txt", z); 
+        let filename = format!("./logs/clientsLog_2ServersUp_1ServerDown_500_client_10000req_100millis_1agent/client{}.txt", z); 
         let mut file = File::create(filename)?;
 
        children.push( thread::spawn( move || {
