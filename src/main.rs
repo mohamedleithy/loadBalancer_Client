@@ -19,7 +19,7 @@ fn main() -> std::io::Result<()>{
 
         let args: Vec<String> = env::args().collect();
         
-        let filename = format!("./logs/clientsLog_2ServersUp_1ServerDown_500_client_10000req_100millis_1agent/client{}.txt", z); 
+        let filename = format!("./logs/test6_clientB/client{}.txt", z); 
         let mut file = File::create(filename)?;
 
        children.push( thread::spawn( move || {
@@ -34,8 +34,8 @@ fn main() -> std::io::Result<()>{
         let _ = socket.set_read_timeout(Some(Duration::from_millis(50))).expect(&msg22);
 
         let mut dropped_counter = 0;
-        for n in 1..10000 {
-          thread::sleep(Duration::from_millis(100));
+        for n in 1..1000 {
+          thread::sleep(Duration::from_millis(50));
         
           // Receives a single datagram message on the socket. If `buf` is too small to hold
           // the message, it will be cut off.
